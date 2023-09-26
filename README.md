@@ -36,6 +36,22 @@ pip install GEOcollector
 
 The following sections are command line parameters associated with GEOcollector
 
+### Command Line Interface
+
+To execute GEOcollector, simply call it from the command line with the relevant parameters
+
+```bash
+geocollector --api-key APIKEY --input-file /home/user/input.csv --verbose
+geocollector --input-file /home/user/input.csv --quiet
+geocollector --api-key APIKEY --input-file /home/user/input.csv
+```
+
+To view help for GEOcollector, run the following command
+
+```bash
+geocollector --help
+```
+
 ### API Key
 
 Without an API key, NCBI limits the number of requests to 3 per second. With an API key, this value is increased to 10
@@ -66,22 +82,6 @@ GSM_4,cell_type_2
 
 If you would like to show debug information on the command line, pass the flag `--verbose`. If you would like to silence
 all output (except warnings), pass the flag `--quiet`. If neither flag is passed, standard "info" messages will be shown
-
-### Command Line Interface
-
-To execute GEOcollector, simply call it from the command line with the relevant parameters
-
-```bash
-geocollector --api-key APIKEY --input-file /home/user/input.csv --verbose
-geocollector --input-file /home/user/input.csv --quiet
-geocollector --api-key APIKEY --input-file /home/user/input.csv
-```
-
-To view help for GEOcollector, run the following command
-
-```bash
-geocollector --help
-```
 
 ## Issues?
 
