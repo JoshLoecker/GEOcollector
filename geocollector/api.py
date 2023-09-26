@@ -263,6 +263,10 @@ class NCBI:
             # Search for <div>:Layout: <span>PAIRED</span></div>
             strand_match: Union[re.Match[str], None] = re.search(r"<div>Layout: <span>(.*?)</span></div>", text)
             strand: str = strand_match.group(1) if strand_match else ""
+            if strand.lower() == "single":
+                strand = "SE"
+            elif strand.lower() == "paired":
+                strand = "PE"
             
             self.input_df.loc[self.input_df["srx"] == srx, "SRR"] = srr
             self.input_df.loc[self.input_df["srx"] == srx, "Strand"] = strand
