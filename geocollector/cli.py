@@ -1,4 +1,6 @@
+import os
 import argparse
+import pandas as pd
 from logging import INFO, DEBUG, ERROR
 
 
@@ -13,6 +15,7 @@ class Arguments(argparse.Namespace):
         self._api_key: str = ""
         self._input_file: str = ""
         self._verbosity: int = INFO
+        self._dataframe: pd.DataFrame = pd.DataFrame()
     
     @property
     def api_key(self) -> str:
@@ -42,6 +45,12 @@ class Arguments(argparse.Namespace):
             self._verbosity = ERROR
         else:
             self._verbosity = INFO
+    
+    @property
+    def dataframe(self) -> pd.DataFrame:
+        if self._dataframe.empty:
+            self._dataframe = pd.read_csv(self.input_file, comment="#")
+        return self._dataframe
 
 
 def parse_args(argv: list[str]) -> Arguments:
@@ -79,5 +88,4 @@ def parse_args(argv: list[str]) -> Arguments:
     
     namespace = Arguments()
     args = parser.parse_args(argv, namespace=namespace)
-    
     return args

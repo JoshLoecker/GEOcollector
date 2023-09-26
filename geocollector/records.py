@@ -20,4 +20,6 @@ class Record:
         self.set_srx_accession()
     
     def set_srx_accession(self) -> None:
-        self.SRX_ACCESSION = self.SRX_LINK.split("=")[-1]
+        srx_accession = self.SRX_LINK.split("=")[-1]
+        if srx_accession.startswith("SRX"):
+            self.SRX_ACCESSION = srx_accession
