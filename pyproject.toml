@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "geocollector"
-version = "0.2.2"
+version = "1.0.0"
 description = "Collect information from NCBI for the https://github.com/HelikarLab/FastqToGeneCounts project"
 authors = ["Josh Loecker <joshloecker@icloud.com>"]
 readme = "README.md"
