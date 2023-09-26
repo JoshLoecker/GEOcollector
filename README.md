@@ -85,6 +85,4 @@ all output (except warnings), pass the flag `--quiet`. If neither flag is passed
 
 ---
 
-## Issues?
-
 If you have problems, please [create a new issue](https://github.com/JoshLoecker/GEOcollector/issue)
