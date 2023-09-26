@@ -79,4 +79,5 @@ def parse_args(argv: list[str]) -> Arguments:
     
     namespace = Arguments()
     args = parser.parse_args(argv, namespace=namespace)
+    
     return args
