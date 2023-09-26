@@ -1,16 +1,17 @@
 import re
+import time
+import tqdm
 import aiohttp
 import asyncio
 import pandas as pd
+from typing import Type
+from logging import Logger
+from types import TracebackType
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
-from logging import Logger
-from records import Record
-from typing import Type
-from types import TracebackType
-import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
-import time
+
+from geocollector.records import Record
 
 
 class NCBI:

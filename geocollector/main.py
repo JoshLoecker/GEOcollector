@@ -1,16 +1,13 @@
-import re
 import sys
 import asyncio
-from pprint import pprint
 
-from api import NCBI
-from logger import get_logger
-from cli import parse_args
-from settings import NCBIsettings
-from records import Record
+from geocollector.api import NCBI
+from geocollector.logger import get_logger
+from geocollector.cli import parse_args
+from geocollector.settings import NCBIsettings
 
 
-async def main() -> None:
+async def _start():
     args = parse_args(sys.argv[1:])
     settings = NCBIsettings(API_KEY=args.api_key, INPUT_FILE=args.input_file)
     logger = get_logger(args.verbosity)
@@ -20,6 +17,10 @@ async def main() -> None:
         await api.update_data()
         api.set_rename_column()
         api.create_csv()
+
+
+def main() -> None:
+    asyncio.run(_start())
 
 
 if __name__ == '__main__':
@@ -41,4 +42,4 @@ if __name__ == '__main__':
     Publication
     Extra Notes
     """
-    asyncio.run(main())
+    main()

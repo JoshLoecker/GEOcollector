@@ -1,5 +1,5 @@
 import argparse
-from logging import INFO, DEBUG, WARNING, ERROR, CRITICAL
+from logging import INFO, DEBUG, ERROR
 
 
 class Arguments(argparse.Namespace):
