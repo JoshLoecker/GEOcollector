@@ -83,6 +83,8 @@ GSM_4,cell_type_2
 If you would like to show debug information on the command line, pass the flag `--verbose`. If you would like to silence
 all output (except warnings), pass the flag `--quiet`. If neither flag is passed, standard "info" messages will be shown
 
+---
+
 ## Issues?
 
 If you have problems, please [create a new issue](https://github.com/JoshLoecker/GEOcollector/issue)
