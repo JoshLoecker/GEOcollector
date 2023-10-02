@@ -38,7 +38,3 @@ def test_default_srx_accession():
     NEW_DATA.pop("SRX_LINK")
     record = Record(**NEW_DATA, SRX_LINK="https://example.com/some_other_link")
     assert record.SRX_ACCESSION == ""
-
-
-if __name__ == '__main__':
-    pytest.main()

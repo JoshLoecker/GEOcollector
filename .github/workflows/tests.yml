@@ -31,9 +31,10 @@ jobs:
           pip install poetry
           poetry install
       - name: Test with pytest
-        run: |
-          poetry run coverage run -m pytest
-          poetry run coverage lcov -o coverage.info
+        run: poetry run coverage run -m pytest
+
+      - name: Generate Coverage
+        run: poetry run coverage lcov -o coverage.info
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
