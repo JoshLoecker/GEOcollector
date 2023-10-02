@@ -31,10 +31,15 @@ jobs:
           pip install poetry
           poetry install
       - name: Test with pytest
-        run: poetry run pytest
+        run: |
+          poetry run pytest
+          poetry run coverage report
+          poetry run coverage lcov
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
+        format: lcov
+
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
