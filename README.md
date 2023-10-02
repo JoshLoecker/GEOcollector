@@ -1,5 +1,9 @@
 # GEO Collector
 
+![PyPI - Version](https://img.shields.io/pypi/v/GEOcollector?style=for-the-badge&logo=PyPy&logoColor=white&color=red&link=https%3A%2F%2Fpypi.org%2Fproject%2Fgeocollector%2F)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/JoshLoecker/GEOcollector/tests.yml?style=for-the-badge&logo=pytest&logoColor=white&label=Tests)
+![Static Badge](https://img.shields.io/badge/Python-%3E%3D3.9-blue?style=for-the-badge&logo=python&logoColor=white)
+
 ## Description
 
 GEOcollector is a Python package for collecting metadata about gene expression datasets from the NCBI Gene Expression
