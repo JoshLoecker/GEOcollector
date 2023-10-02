@@ -1,5 +1,9 @@
 # GEO Collector
 
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/JoshLoecker/GEOcollector/tests.yml)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/JoshLoecker/GEOcollector)
+![Static Badge](https://img.shields.io/badge/Python-3.9%7C3.10%7C3.11-red)
+
 ## Description
 
 GEOcollector is a Python package for collecting metadata about gene expression datasets from the NCBI Gene Expression
