@@ -1,8 +1,8 @@
 # GEO Collector
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/JoshLoecker/GEOcollector/tests.yml)
-![GitHub release (with filter)](https://img.shields.io/github/v/release/JoshLoecker/GEOcollector)
-![Static Badge](https://img.shields.io/badge/Python-%3E%3D3.9-red)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/JoshLoecker/GEOcollector?style=for-the-badge&color=red)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/JoshLoecker/GEOcollector/tests.yml?style=for-the-badge&logo=pytest&logoColor=white&label=Tests)
+![Static Badge](https://img.shields.io/badge/Python-%3E%3D3.9-blue?style=for-the-badge&logo=python&logoColor=white)
 
 ## Description
 
