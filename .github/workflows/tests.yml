@@ -38,9 +38,9 @@ jobs:
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
-        format: lcov
-
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          format: lcov
+
 
 
