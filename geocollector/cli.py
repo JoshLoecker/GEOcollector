@@ -1,6 +1,7 @@
 import os
 import argparse
 import pandas as pd
+from typing import List
 from logging import INFO, DEBUG, ERROR
 
 
@@ -53,7 +54,7 @@ class Arguments(argparse.Namespace):
         return self._dataframe
 
 
-def parse_args(argv: list[str]) -> Arguments:
+def parse_args(argv: List[str]) -> Arguments:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-k", "--api-key",

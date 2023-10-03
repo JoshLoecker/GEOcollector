@@ -6,8 +6,8 @@ import pandas as pd
 from logging import Logger
 from types import TracebackType
 from xml.etree import ElementTree
-from typing import Type, Union, Literal
 from xml.etree.ElementTree import Element
+from typing import Type, Union, Literal, List
 from tqdm.contrib.logging import logging_redirect_tqdm
 from aiohttp.client_exceptions import ServerDisconnectedError
 
@@ -298,7 +298,7 @@ class NCBI:
         
         self.logger.info(f"GSM collection complete")
     
-    def get_replicate_title(self, split_text: list[str]) -> str:
+    def get_replicate_title(self, split_text: List[str]) -> str:
         replicate_title: str
         for i, line in enumerate(split_text):
             if line.lower() == '<tr valign="top"><td nowrap>title</td>':
@@ -308,7 +308,7 @@ class NCBI:
         replicate_title = replicate_title.replace('<td style="text-align: justify">', "").replace("</td>", "")
         return replicate_title
     
-    def get_cell_characteristics(self, split_text: list[str]) -> str:
+    def get_cell_characteristics(self, split_text: List[str]) -> str:
         characteristics: str
         for i, line in enumerate(split_text):
             if line.lower() == '<tr valign="top"><td nowrap>characteristics</td>':
@@ -319,7 +319,7 @@ class NCBI:
         characteristics = characteristics.replace("<br>", ";")
         return characteristics
     
-    def get_source_name(self, split_text: list[str]) -> str:
+    def get_source_name(self, split_text: List[str]) -> str:
         source: str
         for i, line in enumerate(split_text):
             if line.lower() == '<tr valign="top"><td nowrap>source name</td>':
@@ -341,7 +341,7 @@ class NCBI:
         
         return prep_method
     
-    def get_platform_id(self, split_text: list[str]) -> str:
+    def get_platform_id(self, split_text: List[str]) -> str:
         platform_html: str
         for i, line in enumerate(split_text):
             if line.lower() == '<tr valign="top"><td>platform id</td>':
@@ -366,7 +366,7 @@ class NCBI:
         platform_name = platform_name.replace('<td style="text-align: justify">', "").replace("</td>", "")
         return platform_name
     
-    def get_library_strategy(self, split_text: list[str]) -> str:
+    def get_library_strategy(self, split_text: List[str]) -> str:
         library_strategy: str = ""
         for i, line in enumerate(split_text):
             if line.lower() == '<tr valign="top"><td nowrap>library strategy</td>':
