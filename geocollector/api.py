@@ -68,7 +68,7 @@ class NCBI:
         if num_records == 1:
             self.logger.info("Starting work on 1 record")
         else:
-            self.logger.info(f"Starting work on {num_records} records")
+            self.logger.info("Starting work on %s records" % num_records)
         
         await self.search()
         await self.update_data()
@@ -108,7 +108,7 @@ class NCBI:
         session: Literal["eutils", "sra"],
         path: str,
     ) -> aiohttp.ClientResponse:
-        self.logger.debug(f"Making request to path: {path}")
+        self.logger.debug("Making request to path: %s" % path)
         connection: aiohttp.ClientSession
         if session == "eutils":
             connection = self.eutils_session
@@ -130,7 +130,7 @@ class NCBI:
             code_family = str(response.status)[0]
             
             if code_family == "4":
-                self.logger.debug(f"Received status code {response.status}, retrying request")
+                self.logger.debug("Received status code %s, retrying request" % response.status)
                 await asyncio.sleep(5)
                 response = await connection.get(path)
             else:
@@ -152,7 +152,7 @@ class NCBI:
         with logging_redirect_tqdm([self.logger]):
             for gsm in tqdm.tqdm(self.input_df["GSM"], leave=False, desc="Searching for GSMs"):
                 # for gsm in self.input_df["GSM"]:
-                self.logger.debug(f"Searching for {gsm}")
+                self.logger.debug("Searching for %s" % gsm)
                 response = await self.get(
                     "eutils",
                     self.eutils_search_path.replace("[accession]", gsm),
@@ -162,7 +162,7 @@ class NCBI:
         
         self.input_df["search_id"] = ids
         self.input_df = self.input_df.explode("search_id", ignore_index=True)
-        self.logger.info(f"Search complete")
+        self.logger.info("Search complete")
     
     async def update_data(self) -> None:
         """
@@ -185,7 +185,7 @@ class NCBI:
                 self.input_df.loc[self.input_df["search_id"] == record.SEARCH_ID, "Rename"] = record.TITLE
         
         self.input_df = self.input_df.dropna(subset=["GSE"])
-        self.logger.info(f"Fetch complete")
+        self.logger.info("Fetch complete")
     
     def parse_fetch(self, response: str, gsm: str, cell_type: str) -> Record:
         """
@@ -204,13 +204,13 @@ class NCBI:
             
             if gse_accession_match:
                 gse_accession = gse_accession_match.group(1)
-                self.logger.debug(f"Found GSE Accession: {gse_accession}")
+                self.logger.debug("Found GSE Accession: %s" % gse_accession)
             elif platform_id_match:
                 platform_id = platform_id_match.group(1)
                 
                 platform_name_match: Union[re.Match[str], None] = re.match(r'^\d+\.\s+(.*?)\n', record)
                 platform_name: str = platform_name_match.group(1) if platform_name_match else ""
-                self.logger.debug(f"Found Platform {platform_name} with ID {platform_id}")
+                self.logger.debug("Found Platform %s with ID %s" % (platform_name, platform_id))
             elif gsm_accession_match and gsm_accession_match.group(1) == gsm:
                 gsm_accession = gsm_accession_match.group(1)
                 title_match = re.match(r'\d+\.\s+(.*?)\n', record)
@@ -231,7 +231,7 @@ class NCBI:
                 search_id_match = re.search(r"\s+ID:\s+(\d+)", record)
                 search_id = search_id_match.group(1) if search_id_match else ""
                 
-                self.logger.debug(f"Found GSM accession {gsm_accession} with SRX link {srx_link}")
+                self.logger.debug("Found GSM accession %s with SRX link %s" % (gsm_accession, srx_link))
                 
                 new_record = Record(
                     TITLE=title,
@@ -271,7 +271,7 @@ class NCBI:
             self.input_df.loc[self.input_df["srx"] == srx, "SRR"] = srr
             self.input_df.loc[self.input_df["srx"] == srx, "Strand"] = strand
         
-        self.logger.info(f"Conversion complete")
+        self.logger.info("Conversion complete")
     
     async def collect_gsm_related_data(self) -> None:
         for gsm in tqdm.tqdm(self.input_df["GSM"].unique(), leave=False, desc="Getting GSM data"):
@@ -296,7 +296,7 @@ class NCBI:
             self.input_df.loc[self.input_df["GSM"] == gsm, "Source"] = source.replace(",", ";")
             self.input_df.loc[self.input_df["GSM"] == gsm, "Cell Characteristics"] = characteristics.replace(",", ";")
         
-        self.logger.info(f"GSM collection complete")
+        self.logger.info("GSM collection complete")
     
     def get_replicate_title(self, split_text: List[str]) -> str:
         replicate_title: str
@@ -385,7 +385,7 @@ class NCBI:
             publication = self.get_publication(text).replace(",", ";")
             self.input_df.loc[self.input_df["GSE"] == gse, "Publication"] = publication
         
-        self.logger.info(f"GSE collection complete")
+        self.logger.info("GSE collection complete")
     
     def get_publication(self, text: str) -> str:
         # Search for "PMID: \d+" in response
