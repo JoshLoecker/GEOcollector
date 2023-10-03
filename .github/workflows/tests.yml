@@ -11,8 +11,6 @@ on:
       - opened
       - synchronize
       - reopened
-    paths:
-      - '**.py'
 
 jobs:
   test:
