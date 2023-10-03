@@ -17,7 +17,6 @@ Long story short, given an input file like this:
 GSM,cell_type
 GSM3785334,baso
 GSM3898581,baso
-
 ```
 
 GEOcollector will output a file like this (without formatted columns):
